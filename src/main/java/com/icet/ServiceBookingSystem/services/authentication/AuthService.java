@@ -6,4 +6,8 @@ import com.icet.ServiceBookingSystem.dto.UserDto;
 public interface AuthService {
 
     UserDto signupClient(SignupRequestDTO signupRequestDTO);
+
+    Boolean presentByEmail(String email);
+
+    UserDto signupCompany(SignupRequestDTO signupRequestDTO);
 }
