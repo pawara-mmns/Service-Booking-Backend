@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
-@Component
-@Order(Ordered.HIGHEST_PRECEDENCE)
+//
+//@Component
+//@Order(Ordered.HIGHEST_PRECEDENCE)
 public class SimpleCorsFilter implements Filter {
 
     @Value("${app.client.url")
@@ -38,12 +38,11 @@ public class SimpleCorsFilter implements Filter {
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "*");
 
-        if ("OPTIONS".equalsIgnoreCase(request.getMethod())){
+        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
-        }else{
+        } else {
             chain.doFilter(req, res);
         }
-
     }
 
     @Override
