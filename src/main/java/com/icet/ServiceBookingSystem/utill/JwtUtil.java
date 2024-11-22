@@ -1,7 +1,6 @@
 package com.icet.ServiceBookingSystem.utill;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -40,7 +39,7 @@ public class JwtUtil {
                 .setClaims(claims)
                 .setSubject(userName)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+1000*60*30))
+                .setExpiration(new Date(System.currentTimeMillis()+ 1000 *60*60*24))
                 .signWith(SignatureAlgorithm.HS256, getSignKey()).compact();
     }
     private Key getSignKey() {

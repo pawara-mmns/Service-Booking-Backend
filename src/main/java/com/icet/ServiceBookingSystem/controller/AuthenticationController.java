@@ -96,6 +96,7 @@ public class AuthenticationController {
         response.getWriter().write(new JSONObject()
                 .put("userId", user.getId())
                 .put("role", user.getRole())
+
                 .toString()
 
         );
