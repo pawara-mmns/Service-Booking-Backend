@@ -15,6 +15,8 @@ public interface CompanyService {
 
     boolean updateAd(Long adId, AdDTO adDTO) throws IOException;
 
+    boolean deletedAd(Long adId);
+
 
 
 }
