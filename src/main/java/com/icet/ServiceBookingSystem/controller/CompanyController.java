@@ -2,6 +2,7 @@ package com.icet.ServiceBookingSystem.controller;
 
 
 import com.icet.ServiceBookingSystem.dto.AdDTO;
+import com.icet.ServiceBookingSystem.dto.ReservationDTO;
 import com.icet.ServiceBookingSystem.services.company.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/company")
@@ -58,5 +60,18 @@ public class CompanyController {
         }else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
+    }
+
+    @GetMapping("/bookings/{companyId}")
+    public ResponseEntity<List<ReservationDTO>> getAllAdBookings(@PathVariable Long companyId){
+        return ResponseEntity.ok(companyService.getAllAdBookings(companyId));
+
+    }
+
+    @GetMapping("/booking/{bookingId}/{status}")
+    public ResponseEntity<?> changeBookingStatus(@PathVariable Long bookingId, @PathVariable String status){
+        boolean success = companyService.changeBookingStatus(bookingId, status);
+        if (success) return ResponseEntity.ok().build();
+        return ResponseEntity.notFound().build();
     }
 }
